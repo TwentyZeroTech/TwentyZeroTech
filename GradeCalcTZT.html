@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Grade Calculator-©Venkat Mudunuru</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    .bg-light{
+        background-color:rosybrown;
+    }
+    .navtxt{
+        font-family: monospace;
+        font-size: 20px;
+        
+    }
+    .calci {
+        background-color: #f0eedc;
+        /* padding: 50px;
+         margin-top: 10px; 
+        margin-right: 10%;
+        margin-left: 10%; */
+        padding:25px;
+       margin-left: 8%;
+       margin-right: 8%;
+        
+    }
+    .staCal{
+        margin-right: 10%;
+        margin-left: 10%;
+        background-color: lightgray;
+    }
+   
+   .cell{
+       border: #cdcdcd medium groove;
+   }
+   
+   button {
+       border: ridge;
+       padding: 1px 5px 1px 5px;
+       margin: 5px 6px 5px 6px;
+   }
+
+   .note{
+    padding:25px;
+       margin-left: 15%;
+       margin-right: 15%;
+   }
+    
+   </style>
+ </head>
+
+<body>
+<div class="staCal">
+    <nav class="navbar navbar-light bg-light">
+        <h3 class="text-center navtxt">
+          STA 2023- Spring 2020- Grade Calculator (Beta Version)
+        </h3>
+    </nav>
+
+<div class="calci">
+ <div class="container" >
+  <form>
+    <div class="row" >
+        <div class="cell col-sm-2" style="background-color:lavender;"><label></label></div>
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lavenderblush;">% for Final Grade</div>
+        <div class="cell col-sm-2" style="background-color:lavender;">Your Score</div>
+        <div class="cell col-sm-2" style="background-color:lightblue;">Out of</div>
+      </div>
+    <div class="row">
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon; ">Homework*</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">10%</div>
+        <input class="cell col-sm-2"  type="number" id="homeWork" step="0.50" min="0" max="120" onkeypress="return isNumberKey(event, this)" onkeyup="this.value = fnc(this.value, 0, 120)"/>
+       <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+        
+      </div>
+      <div class="row">
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon; ">Sum of top 10 Quizzes</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">15%</div>
+        <input class="cell col-sm-2"  type="number" id="top10QScore" step="0.50" min="0" max="120" onkeypress="return isNumberKey(event, this)" onkeyup="this.value = fnc(this.value, 0, 120)"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon;">Project Score</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">15%</div>
+        <input class="cell col-sm-2"   type="number" id="projectScore" step="0.50" min="0" max="120" onkeypress="return isNumberKey(event, this)" onkeyup="this.value = fnc(this.value, 0, 120)"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon;">Exam-1</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">15%</div>
+        <input class="cell col-sm-2"   type="number" id="exam1" step="0.50" min="0" max="120" onkeypress="return isNumberKey(event, this)" onkeyup="this.value = fnc(this.value, 0, 120);"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon;">Exam-2</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">15%</div>
+        <input class="cell col-sm-2"   type="number" id="exam2" step="0.50" min="0" max="120" onkeypress="return isNumberKey(event, this)" onkeyup="this.value = fnc(this.value, 0, 120);"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon;">Attendance (approximated)</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">5%</div>
+        <input class="cell col-sm-2"   type="number" id="attendance" min="0" max="15" onkeypress="return validateAttendance(event)" onkeyup="this.value = atndnc(this.value, 0, 15)"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">15</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-2 text-nowrap" style="background-color:lemonchiffon;">Final score (anticipated)</div>
+        <div class="cell col-sm-2" style="background-color:lavenderblush;">25%</div>
+        <input class="cell col-sm-2"   type="number" id="final" step="0.50" min="0.00" max="120.00"/>
+        
+        <div class="cell col-sm-2" style="background-color:lightblue;">100</div>
+      </div>
+
+      <div class="row" >
+        <div class="text-center cell col-sm-8" style="background-color: bisque; "><button onclick="calcGrade(event);" data-toggle="modal" data-target="#calcGrade">Calculate My Grade</button>            <button onclick="calClear(event);">Clear the results</button></div>
+    </div>
+
+  
+       <div class="row" >
+        <div class="cell col-sm-4" style="background-color:lemonchiffon;">Your Expected Overall Final score</div>
+        <div class="cell col-sm-4" style="background-color:lightblue;" id="expOverallScore">0</div>
+      </div>
+      <div class="row" >
+        <div class="cell col-sm-4 " style="background-color:lemonchiffon;">Possible Letter Grade</div>
+         <div class="cell col-sm-4" style="background-color:lightblue;" id="letterGrade">F</div>
+      </div>
+  
+  </form>
+
+</div>
+
+
+
+
+</div>
+
+<div class="container note">
+    <div class="row">
+    <div class="col-sm-8 text-center alert alert-success" role="alert">
+       <strong><u>Note:</u></strong> <strong>Homework*</strong> -   Please Add Homework makeup points (out of 12) from canvas to your ononline homework score. <br>
+	   <i>For example</i>: If a student has 94% on online homework score and 9.5 on homework makeup points, the student should enter 94+9.5=103.5 for homework.
+                                     <br>
+                                     <strong>Project:</strong> On April 14, 2020, your project scores will be posted on canvas. Until then you may enter what is your expected project score. <br>
+									 <strong>Final Score (anticipated):</strong> Enter your expected final score out of 100.<br>
+									 <i>Remember</i> One Lowest Exam Score will be replaced with Final Exam Score if the Final exam is higher than the lowest exam.
+      </div>
+    </div>
+  </div>
+  
+<nav class="navbar navbar-light bg-light fixed-bottom">
+    <span class="pull-left navtxt">
+        Designed and Maintained by Twenty Zero Tech
+    </span>
+      <span class="pull-right navtxt">
+        © Venkat Mudunuru
+      </span>
+</nav>
+
+<div class="modal fade" id="calcGrade">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Your Expected Overall Total & Possible Grade</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" id="gradeModal">
+         
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+    function validateAttendance(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+        
+        return true;
+    }
+
+    function isNumberKey(evt,obj){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+    }    
+    
+    function fnc(value, min, max) 
+    {
+        if(parseInt(value) < 0 || isNaN(value)) 
+            return 0; 
+        else if(parseInt(value) > 120) 
+            return "120"; 
+        else return value;
+    }
+
+    function atndnc(value, min, max) 
+    {
+        if(parseInt(value) < 0 || isNaN(value)) 
+            return 0; 
+        else if(parseInt(value) > 15) 
+            return "15"; 
+        else return value;
+    }
+    
+  
+
+    function calcGrade(event){
+        //Excel Formula ((0.1*B3)+(15*(B4/100))+(0.1*(B5/2))+(0.12*B6)+(0.12*B7)+(0.12*B8)+(5*(B9/16))+(0.24*(B10/2)))
+        // Updated Formula ((0.1*homework)+(15*(top10Quizscore/100))+(0.15*(projectscore))+(0.15*exam1)+(0.15*exam2)+(5*(attendance/15))+(0.25*(finalScore)))
+        var lowest_Score = '';
+        var divexpOverallScore = document.getElementById('expOverallScore');
+        var letterGrade = document.getElementById('letterGrade');
+
+        var homework = document.getElementById('homeWork').value;
+        var top10Quizscore = document.getElementById('top10QScore').value;
+        var projectscore = document.getElementById('projectScore').value;
+        var exam1 = document.getElementById('exam1').value;
+        var exam2 = document.getElementById('exam2').value;
+        var attendance = document.getElementById('attendance').value;
+        var finalScore = document.getElementById('final').value;
+         
+        if(finalScore>exam1 || finalScore>exam2){
+            if(exam1>exam2){
+              console.log("Exam2 has lowest Score");
+              lowest_Score = 'Exam2';
+              document.getElementById('gradeModal').innerHTML = "<span>Lowest Score in </span>"+lowest_Score+"<span> replaced with the final exam score "+ finalScore;
+              document.getElementById('exam2').value = finalScore;
+            }
+            else{
+              console.log("Exam1 has lowest Score");
+              lowest_Score = 'Exam1';
+              document.getElementById('gradeModal').innerHTML = "<span>Lowest Score in </span>"+lowest_Score+"<span> replaced with the final exam score "+ finalScore;
+              document.getElementById('exam1').value = finalScore;
+            }
+            
+        }
+        
+
+        var calTotalScore = ((0.1*homework)+(15*(top10Quizscore/100))+(0.15*(projectscore))+(0.15*exam1)+(0.15*exam2)+(5*(attendance/15))+(0.25*(finalScore)));
+        divexpOverallScore.innerHTML = calTotalScore;
+  
+        
+       
+        //Excel Formula =(IF(C13>=97,"A+",IF(C13>=93,"A",IF(C13>=90,"A-",IF(C13>=87,"B+",IF(C13>=83,"B",IF(C13>=80,"B-",IF(C13>=77,"C+",IF(C13>=73,"C",IF(C13>=70,"C-",IF(C13>=67,"D+",IF(C13>=63,"D",IF(C13>=60,"D-","F")))))))))))))
+        //UpdatedFormula
+
+         
+           var expOverallScore = Math.round(calTotalScore);
+            if(expOverallScore>=97){
+                letterGrade.innerHTML = "A+";
+            }
+            else if(expOverallScore>=93 && expOverallScore<97){
+                letterGrade.innerHTML = "A";
+            }
+            else if(expOverallScore>=90 && expOverallScore<93){
+                letterGrade.innerHTML = "A-";
+            }
+            else if(expOverallScore>=87 && expOverallScore<90){
+                letterGrade.innerHTML = "B+";
+            }
+            else if(expOverallScore>=83 && expOverallScore<87){
+                letterGrade.innerHTML = "B";
+            }
+            else if(expOverallScore>=80 && expOverallScore<83){
+                letterGrade.innerHTML = "B-";
+            }
+            else if(expOverallScore>=77 && expOverallScore<80){
+                letterGrade.innerHTML = "C+";
+            }
+            else if(expOverallScore>=73 && expOverallScore<77){
+                letterGrade.innerHTML = "C";
+            }
+            else if(expOverallScore>=70 && expOverallScore<73){
+                letterGrade.innerHTML = "C-";
+            }
+            else if(expOverallScore>=67 && expOverallScore<70){
+                letterGrade.innerHTML = "D+";
+            }
+            else if(expOverallScore>=63 && expOverallScore<67){
+                letterGrade.innerHTML = "D";
+            }
+            else if(expOverallScore>=60 && expOverallScore<63){
+                letterGrade.innerHTML = "D-";
+            }
+            else{
+                letterGrade.innerHTML = "F";
+            }
+            document.getElementById('gradeModal').innerHTML += "<br><br><span>Your Expected Overall Final Score: </span>"+calTotalScore + "<br><br><span> Expected Final Grade: </span> "+ letterGrade.innerHTML;
+
+            event.preventDefault();
+            
+         
+    
+         
+   }
+
+   function calClear(event){
+       event.stopPropogation();
+   }
+
+    </script>
+    
+ 
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+</body>
+</html>
