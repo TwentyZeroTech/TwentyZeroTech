@@ -145,22 +145,24 @@
 
 <div class="container note">
     <div class="row">
-    <div class="col-sm-8 text-center alert alert-success" role="alert">
+    <div class="col-sm-8 text-decoration alert alert-success" role="alert">
        <strong><u>Note:</u></strong> <strong>Homework*</strong> -   Please Add Homework makeup points (out of 12) from canvas to your ononline homework score. <br>
 	   <i>For example</i>: If a student has 94% on online homework score and 9.5 on homework makeup points, the student should enter 94+9.5=103.5 for homework.
                                      <br>
                                      <strong>Project:</strong> On April 14, 2020, your project scores will be posted on canvas. Until then you may enter what is your expected project score. <br>
 									 <strong>Final Score (anticipated):</strong> Enter your expected final score out of 100.<br>
-									 <i>Remember</i> One Lowest Exam Score will be replaced with Final Exam Score if the Final exam is higher than the lowest exam.
+									 <i>Remember</i> One Lowest Exam Score will be replaced with Final Exam Score if the Final exam is higher than the lowest exam.<br>
+									 <strong>Current Grade without Final Score:</strong> If you like to know your current grade without final, please multiply <u>Your Expected Overall Final Score</u> [not incuding final exam points] with <u>1.3333</u><br>
+									 <strong>Note:</strong> This is a Beta Version. If you see any issues with grading, please contact your instructor for manual grade calculations<br>
       </div>
     </div>
   </div>
   
 <nav class="navbar navbar-light bg-light fixed-bottom">
-    <span class="pull-left navtxt">
+    <span class="pull-left navtxt" style="margin-top:2%">
         Designed and Maintained by Twenty Zero Tech
     </span>
-      <span class="pull-right navtxt">
+      <span class="pull-right navtxt" style="margin-top:2%">
         © Venkat Mudunuru
       </span>
 </nav>
@@ -182,6 +184,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
+          <span class="pull-left" style="font-size:6pt;font-family: Caflisch Script;">©Venkateswara Rao Mudunuru Ph.D.</span>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
         
@@ -246,25 +249,38 @@
         var exam2 = document.getElementById('exam2').value;
         var attendance = document.getElementById('attendance').value;
         var finalScore = document.getElementById('final').value;
-         
-        if(finalScore>exam1 || finalScore>exam2){
-            if(exam1>exam2){
-              console.log("Exam2 has lowest Score");
-              lowest_Score = 'Exam2';
-              document.getElementById('gradeModal').innerHTML = "<span>Lowest Score in </span>"+lowest_Score+"<span> replaced with the final exam score "+ finalScore;
-              document.getElementById('exam2').value = finalScore;
-            }
-            else{
-              console.log("Exam1 has lowest Score");
-              lowest_Score = 'Exam1';
-              document.getElementById('gradeModal').innerHTML = "<span>Lowest Score in </span>"+lowest_Score+"<span> replaced with the final exam score "+ finalScore;
-              document.getElementById('exam1').value = finalScore;
-            }
-            
+
+        var min = Math.min(exam1,exam2);
+
+        if(min == exam1){
+          lowest_Score = 'exam1';
+          console.log("Exam1 has lowest Score");
+          
         }
+        else{
+          lowest_Score = 'exam2';
+          console.log("Exam2 has lowest Score");
+          
+        }
+
+        if(finalScore>min){
+          document.getElementById('gradeModal').innerHTML = "<span>Lowest Score in </span>"+lowest_Score+"<span> replaced with the final exam score "+ finalScore;
+          document.getElementById(lowest_Score).value=finalScore;
+         
+
+
+      }else{ 
+      alert("no change");
+      }
+         
+        var Exam1 = document.getElementById('exam1').value;
+        console.log(Exam1);
+        var Exam2 = document.getElementById('exam2').value;
+        console.log(Exam2);
+       
         
 
-        var calTotalScore = ((0.1*homework)+(15*(top10Quizscore/100))+(0.15*(projectscore))+(0.15*exam1)+(0.15*exam2)+(5*(attendance/15))+(0.25*(finalScore)));
+        var calTotalScore = ((0.1*homework)+(15*(top10Quizscore/100))+(0.15*(projectscore))+(0.15*Exam1)+(0.15*Exam2)+(5*(attendance/15))+(0.25*(finalScore)));
         divexpOverallScore.innerHTML = calTotalScore;
   
         
